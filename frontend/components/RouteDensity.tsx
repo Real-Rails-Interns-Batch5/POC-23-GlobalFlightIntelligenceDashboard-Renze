@@ -24,7 +24,7 @@ export default function RouteDensity({ routes }: Props) {
       <div style={{ marginBottom: 12 }}>
         <div style={{ fontSize: 14, fontWeight: 600, color: '#f1f5f9' }}>🛣 Route Density</div>
         <div style={{ fontSize: 11, color: '#475569', marginTop: 2 }}>
-          Busiest routes by number of active flights · Synthetic data
+          Busiest routes by number of active flights · 
         </div>
       </div>
       <ResponsiveContainer width="100%" height={220}>

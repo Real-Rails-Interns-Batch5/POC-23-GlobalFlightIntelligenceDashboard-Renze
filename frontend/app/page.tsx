@@ -271,6 +271,8 @@ export default function Dashboard() {
           minHeight: 0,
         }}>
 
+         
+          
           {/* ── SECTION A — Intelligence Layer (Stats + Alerts) ── */}
           <section style={{ borderBottom: '1px solid #1F2937', padding: '14px' }}>
             <div style={{
@@ -298,6 +300,18 @@ export default function Dashboard() {
             <div style={{ overflowX: 'auto', paddingBottom: 4 }}>
               <StatsBar flights={filteredFlights} alerts={alerts} routes={routes} />
             </div>
+
+             {/* ── SECTION D — Filters ── */}
+          <section style={{ borderBottom: '1px solid #1F2937', padding: '14px' }}>
+            <div style={{
+              fontSize: 11, fontWeight: 700, color: '#94a3b8',
+              textTransform: 'uppercase', letterSpacing: '0.8px', marginBottom: 8,
+            }}>
+              🔍 Filters 
+            </div>
+            <FilterBar filter={filter} onChange={setFilter} />
+          </section>
+
             <div style={{ marginTop: 12 }}>
               <AlertCards alerts={alerts} />
             </div>
@@ -342,16 +356,7 @@ export default function Dashboard() {
             <WhoControlsTheRail />
           </section>
 
-          {/* ── SECTION D — Filters ── */}
-          <section style={{ borderBottom: '1px solid #1F2937', padding: '14px' }}>
-            <div style={{
-              fontSize: 11, fontWeight: 700, color: '#94a3b8',
-              textTransform: 'uppercase', letterSpacing: '0.8px', marginBottom: 8,
-            }}>
-              🔍 Filters &amp; Tooltips
-            </div>
-            <FilterBar filter={filter} onChange={setFilter} />
-          </section>
+          
 
           {/* ── SECTION E — Download ── */}
           <section style={{ padding: '14px' }}>

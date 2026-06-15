@@ -14,7 +14,7 @@ interface Props {
 export default function FilterBar({ filter, onChange }: Props) {
   return (
     <div className="glass" style={{ padding: '12px 16px', display: 'flex', alignItems: 'center', gap: 16, flexWrap: 'wrap' }}>
-      <span style={{ fontSize: 13, color: '#94a3b8', fontWeight: 500 }}>🔍 Filters</span>
+      
 
       {/* Country filter */}
       <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
