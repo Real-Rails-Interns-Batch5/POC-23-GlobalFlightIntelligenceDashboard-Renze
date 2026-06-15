@@ -106,7 +106,9 @@ export default function AirportDrillDown({ code, onClose }: Props) {
             borderRadius: 6, fontSize: 12,
           }}>
             <span style={{ color: '#60a5fa', fontWeight: 600 }}>{f.callsign}</span>
-            <span style={{ color: '#64748b' }}>{f.origin} → {f.dest}</span>
+            <span style={{ color: '#64748b' }}>
+  {f.origin || 'Unknown'} → {f.dest || 'N/A'}
+</span>
             <span style={{ color: '#34d399' }}>{f.speed} kts</span>
           </div>
         ))}

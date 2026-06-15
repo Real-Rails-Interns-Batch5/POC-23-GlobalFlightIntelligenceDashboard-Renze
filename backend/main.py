@@ -339,18 +339,65 @@ def get_airports():
     return {"airports": AIRPORTS}
 
 @app.get("/api/airport/{code}")
-def get_airport_detail(code: str):
-    airport = next((a for a in AIRPORTS if a["code"] == code.upper()), None)
+async def get_airport_detail(code: str):
+    airport = next(
+        (a for a in AIRPORTS if a["code"] == code.upper()),
+        None
+    )
+
     if not airport:
         return {"error": "Airport not found"}
-    flights_here = [f for f in make_mock_flights(60)
-                    if f.get("origin") == code.upper() or f.get("dest") == code.upper()]
+
+    # Try live OpenSky first
+    live = await fetch_opensky_flights()
+
+    if live:
+        nearby = []
+
+        for flight in live:
+            lat = flight.get("lat")
+            lng = flight.get("lng")
+
+            if lat is None or lng is None:
+                continue
+
+            # Simple proximity check
+            distance = (
+                abs(lat - airport["lat"]) +
+                abs(lng - airport["lng"])
+            )
+
+            if distance < 15:
+                nearby.append({
+                    "id": flight["id"],
+                    "callsign": flight["callsign"],
+                    "origin": flight["country"],
+                    "dest": airport["code"],
+                    "speed": flight["speed"],
+                    "source": "OpenSky (live)"
+                })
+
+        return {
+            "airport": airport,
+            "flights": nearby[:10],
+            "alerts": derive_alerts_from_live(live, count=3),
+            "traffic": len(nearby),
+            "source": "Live Airport Intelligence (OpenSky)"
+        }
+
+    # Fallback to synthetic
+    flights_here = [
+        f for f in make_mock_flights(60)
+        if f.get("origin") == code.upper()
+        or f.get("dest") == code.upper()
+    ]
+
     return {
         "airport": airport,
         "flights": flights_here[:10],
-        "alerts":  make_mock_alerts(3),
+        "alerts": make_mock_alerts(3),
         "traffic": random.randint(120, 480),
-        "source":  "Flight Intelligence Analytics Layer"
+        "source": "Synthetic Airport Intelligence (mock)"
     }
 
 @app.get("/api/replay")
