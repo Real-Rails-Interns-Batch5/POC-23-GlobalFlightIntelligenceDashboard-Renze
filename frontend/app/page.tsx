@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import dynamic from 'next/dynamic';
 import AlertCards from '@/components/AlertCards';
 import StatsBar from '@/components/StatsBar';
@@ -14,17 +14,59 @@ import Intro from '@/components/Intro';
 
 const LiveMap = dynamic(() => import('@/components/LiveMap'), { ssr: false });
 
+interface Flight {
+  id: string;
+  callsign: string;
+  lat: number;
+  lng: number;
+  altitude: number;
+  speed: number;
+  heading: number;
+  country: string;
+  source: string;
+  origin?: string | null;
+  dest?: string | null;
+}
+
+interface Alert {
+  id: string;
+  callsign: string;
+  type: string;
+  severity: string;
+  airport: string;
+  message: string;
+  timestamp: string;
+  source: string;
+}
+
+interface Route {
+  from: string;
+  to: string;
+  flights: number;
+}
+
+interface Airport {
+  code: string;
+  name: string;
+  lat: number;
+  lng: number;
+  city: string;
+}
+
 export default function Dashboard() {
-  const [flights, setFlights]     = useState<any[]>([]);
-  const [alerts, setAlerts]       = useState<any[]>([]);
-  const [routes, setRoutes]       = useState<any[]>([]);
-  const [airports, setAirports]   = useState<any[]>([]);
-  const [source, setSource]       = useState('');
+  const [flights, setFlights]     = useState<Flight[]>([]);
+  const [alerts, setAlerts]       = useState<Alert[]>([]);
+  const [routes, setRoutes]       = useState<Route[]>([]);
+  const [airports, setAirports]   = useState<Airport[]>([]);
+  const [sourceMode, setSourceMode] = useState<'live' | 'mock' | ''>('');
+  const [alertSource, setAlertSource] = useState('');
+  const [routeSource, setRouteSource] = useState('');
   const [loading, setLoading]     = useState(true);
   const [filter, setFilter]       = useState({ country: '', minSpeed: 0, minAlt: 0 });
   const [selectedAirport, setSelectedAirport] = useState<string | null>(null);
   const [showIntro, setShowIntro] = useState(true);
   const [activeSection, setActiveSection] = useState<'intelligence' | 'replay'>('intelligence');
+  const handleAirportClick = useCallback((code: string) => setSelectedAirport(code), []);
 
   async function fetchAll() {
     try {
@@ -43,7 +85,9 @@ export default function Dashboard() {
       setAlerts(aData.alerts      || []);
       setRoutes(rData.routes      || []);
       setAirports(apData.airports || []);
-      setSource(fData.source      || '');
+      setSourceMode(fData.mode === 'live' ? 'live' : fData.mode === 'mock' ? 'mock' : '');
+      setAlertSource(aData.source || '');
+      setRouteSource(rData.source || '');
     } catch (e) {
       console.error('Fetch error:', e);
     } finally {
@@ -52,9 +96,14 @@ export default function Dashboard() {
   }
 
   useEffect(() => {
-    fetchAll();
+    const firstFetch = window.setTimeout(() => {
+      fetchAll();
+    }, 0);
     const interval = setInterval(fetchAll, 15000);
-    return () => clearInterval(interval);
+    return () => {
+      window.clearTimeout(firstFetch);
+      clearInterval(interval);
+    };
   }, []);
 
   const filteredFlights = flights.filter(f => {
@@ -136,7 +185,7 @@ export default function Dashboard() {
         <LiveMap
           flights={filteredFlights}
           airports={airports}
-          onAirportClick={setSelectedAirport}
+          onAirportClick={handleAirportClick}
         />
       </div>
 
@@ -188,8 +237,8 @@ export default function Dashboard() {
           {/* Status row */}
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-              <span className={source.includes('live') ? 'badge-live' : 'badge-mock'}>
-                {source.includes('live') ? 'LIVE' : 'SYNTHETIC'}
+              <span className={sourceMode === 'live' ? 'badge-live' : 'badge-mock'}>
+                {sourceMode === 'live' ? 'Live OpenSky' : 'Mock fallback'}
               </span>
               <span style={{ fontSize: 11, color: '#64748b' }}>
                 {filteredFlights.length} flights
@@ -203,6 +252,9 @@ export default function Dashboard() {
                 {new Date().toLocaleTimeString()}
               </div>
             </div>
+          </div>
+          <div style={{ fontSize: 10, color: '#64748b', marginTop: 8, lineHeight: 1.35 }}>
+            {sourceMode === 'live' ? 'Live aircraft positions from OpenSky.' : 'Using mock fallback data.'}
           </div>
         </div>
 
@@ -254,14 +306,14 @@ export default function Dashboard() {
 
             {/* Active Alerts */}
             <section style={{ borderBottom: '1px solid #1F2937', padding: '14px' }}>
-              <AlertCards alerts={alerts} />
+              <AlertCards alerts={alerts} source={alertSource} />
             </section>
 
             {/* Route Density */}
             <section style={{ borderBottom: '1px solid #1F2937', padding: '14px' }}>
               
               <div style={{ overflowX: 'auto' }}>
-                <RouteDensity routes={routes} />
+                <RouteDensity routes={routes} source={routeSource} />
               </div>
             </section>
 

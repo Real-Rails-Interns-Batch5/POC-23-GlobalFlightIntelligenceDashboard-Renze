@@ -13,14 +13,24 @@ interface Alert {
 
 interface Props {
   alerts: Alert[];
+  source?: string;
 }
 
-export default function AlertCards({ alerts }: Props) {
+export default function AlertCards({ alerts, source }: Props) {
+  const isLive = source?.toLowerCase().includes('live');
+  const sourceSummary = isLive ? 'Demo alerts from OpenSky positions.' : 'Using mock alert data.';
+
   return (
     <div className="glass" style={{ padding: 16 }}>
-      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 12 }}>
-        <span style={{ fontSize: 14, fontWeight: 600, color: '#f1f5f9' }}>🚨 Active Alerts</span>
-        
+      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 8 }}>
+        <span style={{ fontSize: 14, fontWeight: 600, color: '#f1f5f9' }}>Active Alerts</span>
+        <span className={isLive ? 'badge-live' : 'badge-mock'} style={{ fontSize: 10 }}>
+          {isLive ? 'Live OpenSky' : 'Mock fallback'}
+        </span>
+      </div>
+
+      <div style={{ fontSize: 11, color: '#64748b', marginBottom: 10, lineHeight: 1.35 }}>
+        {source ? sourceSummary : 'Using mock alert data.'}
       </div>
 
       <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>

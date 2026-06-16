@@ -81,7 +81,7 @@ export default function LiveMap({ flights, airports, onAirportClick }: Props) {
 
     flights.forEach(flight => {
       if (!flight.lat || !flight.lng) return;
-      const isLive = flight.source?.includes('live');
+      const isLive = flight.source?.toLowerCase().includes('live');
       const color  = isLive ? '#34d399' : '#fbbf24';
 
       const icon = L.divIcon({
@@ -148,7 +148,7 @@ export default function LiveMap({ flights, airports, onAirportClick }: Props) {
 
       airportRef.current.push(marker);
     });
-  }, [airports]);
+  }, [airports, onAirportClick]);
 
   return (
   <div 

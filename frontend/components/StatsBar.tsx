@@ -1,9 +1,24 @@
 'use client';
 
+interface Flight {
+  country?: string;
+  altitude: number;
+  speed: number;
+}
+
+interface Alert {
+  severity: string;
+}
+
+interface Route {
+  from?: string;
+  to?: string;
+}
+
 interface Props {
-  flights: any[];
-  alerts:  any[];
-  routes:  any[];
+  flights: Flight[];
+  alerts:  Alert[];
+  routes:  Route[];
 }
 
 export default function StatsBar({ flights, alerts, routes }: Props) {

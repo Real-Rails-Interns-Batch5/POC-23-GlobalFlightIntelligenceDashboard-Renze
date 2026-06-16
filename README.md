@@ -121,14 +121,22 @@ Visualization & Analytics
 * Alerts derive from live aircraft anomalies.
 * Historical Replay derives from live aircraft states.
 
-### Synthetic Mode
+## Mock Data Package
 
-* Flights generated dynamically.
-* Routes generated dynamically.
-* Alerts generated dynamically.
-* Replay snapshots generated dynamically.
+The project includes a dedicated mock-data package for development,
+testing, demonstrations, and fallback operation.
 
-All synthetic data is clearly labeled.
+Features:
+
+- Data dictionary and schema definitions
+- Synthetic flight, alert, route, and airport datasets
+- CSV export support
+- JSON export support
+- Edge-case simulation scenarios
+- Explicit synthetic-data labeling
+
+All synthetic records include a `SYNTHETIC_LABEL` field to ensure
+they can be clearly distinguished from live OpenSky data.
 
 ---
 

@@ -9,22 +9,30 @@ interface Route {
 
 interface Props {
   routes: Route[];
+  source?: string;
 }
 
-export default function RouteDensity({ routes }: Props) {
-  const data = routes
+export default function RouteDensity({ routes, source }: Props) {
+  const isLive = source?.toLowerCase().includes('live');
+  const sourceSummary = isLive ? 'Inferred from OpenSky positions.' : 'Using mock route data.';
+  const data = [...routes]
     .sort((a, b) => b.flights - a.flights)
     .slice(0, 8)
-    .map(r => ({ name: `${r.from}→${r.to}`, flights: r.flights }));
+    .map(r => ({ name: `${r.from}->${r.to}`, flights: r.flights }));
 
   const colors = ['#38BDF8','#34d399','#818CF8','#fbbf24','#f87171','#38bdf8','#fb923c','#e879f9'];
 
   return (
     <div className="glass" style={{ padding: 16 }}>
       <div style={{ marginBottom: 12 }}>
-        <div style={{ fontSize: 14, fontWeight: 600, color: '#f1f5f9' }}>🛣 Route Density</div>
-        <div style={{ fontSize: 11, color: '#475569', marginTop: 2 }}>
-          Busiest routes by number of active flights · 
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 8 }}>
+          <div style={{ fontSize: 14, fontWeight: 600, color: '#f1f5f9' }}>Route Density</div>
+          <span className={isLive ? 'badge-live' : 'badge-mock'} style={{ fontSize: 10 }}>
+            {isLive ? 'Live OpenSky' : 'Mock fallback'}
+          </span>
+        </div>
+        <div style={{ fontSize: 11, color: '#64748b', marginTop: 4, lineHeight: 1.35 }}>
+          {source ? sourceSummary : 'Using mock route data.'}
         </div>
       </div>
       <ResponsiveContainer width="100%" height={220}>
