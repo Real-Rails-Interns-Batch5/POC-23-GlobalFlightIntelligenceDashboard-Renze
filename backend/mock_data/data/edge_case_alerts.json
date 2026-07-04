@@ -1,0 +1,50 @@
+[
+  {
+    "id": "edge-alert-001",
+    "callsign": "UA007",
+    "type": "Squawk 7700",
+    "severity": "high",
+    "airport": "JFK",
+    "message": "Squawk 7700 general emergency declared near New York",
+    "timestamp": "2026-07-04T18:08:06.792157+00:00",
+    "source": "Synthetic alert engine (mock)",
+    "SYNTHETIC_LABEL": "SYNTHETIC - not a real operational record",
+    "edge_case": "Maximum severity emergency squawk"
+  },
+  {
+    "id": "edge-alert-002",
+    "callsign": "SQ321",
+    "type": "No Signal",
+    "severity": "high",
+    "airport": "SIN",
+    "message": "No Signal for 32 minutes near Singapore",
+    "timestamp": "2026-07-04T18:08:06.792157+00:00",
+    "source": "Synthetic alert engine (mock)",
+    "SYNTHETIC_LABEL": "SYNTHETIC - not a real operational record",
+    "edge_case": "Extended signal dropout"
+  },
+  {
+    "id": "edge-alert-003",
+    "callsign": "TK000",
+    "type": "Route Divergence",
+    "severity": "low",
+    "airport": null,
+    "message": "Minor route divergence with no nearby airport",
+    "timestamp": "2026-07-04T18:08:06.792157+00:00",
+    "source": "Synthetic alert engine (mock)",
+    "SYNTHETIC_LABEL": "SYNTHETIC - not a real operational record",
+    "edge_case": "Null airport field"
+  },
+  {
+    "id": "edge-alert-004",
+    "callsign": "BA001",
+    "type": "Altitude Anomaly",
+    "severity": "medium",
+    "airport": "LHR",
+    "message": "Duplicate alert for same flight and type",
+    "timestamp": "2026-07-04T18:08:06.792157+00:00",
+    "source": "Synthetic alert engine (mock)",
+    "SYNTHETIC_LABEL": "SYNTHETIC - not a real operational record",
+    "edge_case": "Duplicate emission"
+  }
+]

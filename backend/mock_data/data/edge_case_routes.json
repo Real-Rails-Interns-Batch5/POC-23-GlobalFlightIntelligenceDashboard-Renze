@@ -1,0 +1,38 @@
+[
+  {
+    "from": "DEL",
+    "to": "DEL",
+    "fromLat": 28.56,
+    "fromLng": 77.1,
+    "toLat": 28.56,
+    "toLng": 77.1,
+    "flights": 1,
+    "source": "Synthetic (mock)",
+    "SYNTHETIC_LABEL": "SYNTHETIC - not a real operational record",
+    "edge_case": "Origin equals destination"
+  },
+  {
+    "from": "GRU",
+    "to": "NRT",
+    "fromLat": -23.43,
+    "fromLng": -46.47,
+    "toLat": 35.77,
+    "toLng": 140.39,
+    "flights": 0,
+    "source": "Synthetic (mock)",
+    "SYNTHETIC_LABEL": "SYNTHETIC - not a real operational record",
+    "edge_case": "Zero flights on route"
+  },
+  {
+    "from": "DXB",
+    "to": "LHR",
+    "fromLat": 25.25,
+    "fromLng": 55.36,
+    "toLat": 51.47,
+    "toLng": -0.46,
+    "flights": 999,
+    "source": "Synthetic (mock)",
+    "SYNTHETIC_LABEL": "SYNTHETIC - not a real operational record",
+    "edge_case": "Extreme flight count for chart stress test"
+  }
+]

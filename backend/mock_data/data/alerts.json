@@ -1,0 +1,68 @@
+[
+  {
+    "id": "alert-0",
+    "callsign": "AI895",
+    "type": "No Signal",
+    "severity": "high",
+    "airport": "BOM",
+    "message": "No Signal detected near Mumbai",
+    "timestamp": "2026-07-04T17:43:06.809789+00:00",
+    "source": "Synthetic alert engine (mock)",
+    "SYNTHETIC_LABEL": "SYNTHETIC - not a real operational record"
+  },
+  {
+    "id": "alert-1",
+    "callsign": "LH182",
+    "type": "No Signal",
+    "severity": "high",
+    "airport": "JFK",
+    "message": "No Signal detected near New York",
+    "timestamp": "2026-07-04T18:04:06.809820+00:00",
+    "source": "Synthetic alert engine (mock)",
+    "SYNTHETIC_LABEL": "SYNTHETIC - not a real operational record"
+  },
+  {
+    "id": "alert-2",
+    "callsign": "LH927",
+    "type": "No Signal",
+    "severity": "high",
+    "airport": "CDG",
+    "message": "No Signal detected near Paris",
+    "timestamp": "2026-07-04T17:45:06.809834+00:00",
+    "source": "Synthetic alert engine (mock)",
+    "SYNTHETIC_LABEL": "SYNTHETIC - not a real operational record"
+  },
+  {
+    "id": "alert-5",
+    "callsign": "BA558",
+    "type": "Speed Deviation",
+    "severity": "high",
+    "airport": "BOM",
+    "message": "Speed Deviation detected near Mumbai",
+    "timestamp": "2026-07-04T17:46:06.809861+00:00",
+    "source": "Synthetic alert engine (mock)",
+    "SYNTHETIC_LABEL": "SYNTHETIC - not a real operational record"
+  },
+  {
+    "id": "alert-3",
+    "callsign": "AI804",
+    "type": "Speed Deviation",
+    "severity": "medium",
+    "airport": "GRU",
+    "message": "Speed Deviation detected near Sao Paulo",
+    "timestamp": "2026-07-04T17:53:06.809844+00:00",
+    "source": "Synthetic alert engine (mock)",
+    "SYNTHETIC_LABEL": "SYNTHETIC - not a real operational record"
+  },
+  {
+    "id": "alert-4",
+    "callsign": "CX837",
+    "type": "No Signal",
+    "severity": "medium",
+    "airport": "DXB",
+    "message": "No Signal detected near Dubai",
+    "timestamp": "2026-07-04T17:56:06.809854+00:00",
+    "source": "Synthetic alert engine (mock)",
+    "SYNTHETIC_LABEL": "SYNTHETIC - not a real operational record"
+  }
+]

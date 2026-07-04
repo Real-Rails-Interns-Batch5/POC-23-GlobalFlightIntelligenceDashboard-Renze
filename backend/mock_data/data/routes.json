@@ -1,0 +1,134 @@
+[
+  {
+    "from": "JFK",
+    "to": "NRT",
+    "fromLat": 40.64,
+    "fromLng": -73.78,
+    "toLat": 35.77,
+    "toLng": 140.39,
+    "flights": 31,
+    "source": "Synthetic (mock)",
+    "SYNTHETIC_LABEL": "SYNTHETIC - not a real operational record"
+  },
+  {
+    "from": "CDG",
+    "to": "LHR",
+    "fromLat": 49.01,
+    "fromLng": 2.55,
+    "toLat": 51.47,
+    "toLng": -0.46,
+    "flights": 26,
+    "source": "Synthetic (mock)",
+    "SYNTHETIC_LABEL": "SYNTHETIC - not a real operational record"
+  },
+  {
+    "from": "SYD",
+    "to": "DXB",
+    "fromLat": -33.94,
+    "fromLng": 151.18,
+    "toLat": 25.25,
+    "toLng": 55.36,
+    "flights": 12,
+    "source": "Synthetic (mock)",
+    "SYNTHETIC_LABEL": "SYNTHETIC - not a real operational record"
+  },
+  {
+    "from": "JFK",
+    "to": "GRU",
+    "fromLat": 40.64,
+    "fromLng": -73.78,
+    "toLat": -23.43,
+    "toLng": -46.47,
+    "flights": 34,
+    "source": "Synthetic (mock)",
+    "SYNTHETIC_LABEL": "SYNTHETIC - not a real operational record"
+  },
+  {
+    "from": "DEL",
+    "to": "GRU",
+    "fromLat": 28.56,
+    "fromLng": 77.1,
+    "toLat": -23.43,
+    "toLng": -46.47,
+    "flights": 12,
+    "source": "Synthetic (mock)",
+    "SYNTHETIC_LABEL": "SYNTHETIC - not a real operational record"
+  },
+  {
+    "from": "DEL",
+    "to": "SIN",
+    "fromLat": 28.56,
+    "fromLng": 77.1,
+    "toLat": 1.36,
+    "toLng": 103.99,
+    "flights": 17,
+    "source": "Synthetic (mock)",
+    "SYNTHETIC_LABEL": "SYNTHETIC - not a real operational record"
+  },
+  {
+    "from": "DXB",
+    "to": "SIN",
+    "fromLat": 25.25,
+    "fromLng": 55.36,
+    "toLat": 1.36,
+    "toLng": 103.99,
+    "flights": 37,
+    "source": "Synthetic (mock)",
+    "SYNTHETIC_LABEL": "SYNTHETIC - not a real operational record"
+  },
+  {
+    "from": "DXB",
+    "to": "DEL",
+    "fromLat": 25.25,
+    "fromLng": 55.36,
+    "toLat": 28.56,
+    "toLng": 77.1,
+    "flights": 32,
+    "source": "Synthetic (mock)",
+    "SYNTHETIC_LABEL": "SYNTHETIC - not a real operational record"
+  },
+  {
+    "from": "LHR",
+    "to": "NRT",
+    "fromLat": 51.47,
+    "fromLng": -0.46,
+    "toLat": 35.77,
+    "toLng": 140.39,
+    "flights": 28,
+    "source": "Synthetic (mock)",
+    "SYNTHETIC_LABEL": "SYNTHETIC - not a real operational record"
+  },
+  {
+    "from": "BOM",
+    "to": "CDG",
+    "fromLat": 19.09,
+    "fromLng": 72.87,
+    "toLat": 49.01,
+    "toLng": 2.55,
+    "flights": 40,
+    "source": "Synthetic (mock)",
+    "SYNTHETIC_LABEL": "SYNTHETIC - not a real operational record"
+  },
+  {
+    "from": "CDG",
+    "to": "NRT",
+    "fromLat": 49.01,
+    "fromLng": 2.55,
+    "toLat": 35.77,
+    "toLng": 140.39,
+    "flights": 21,
+    "source": "Synthetic (mock)",
+    "SYNTHETIC_LABEL": "SYNTHETIC - not a real operational record"
+  },
+  {
+    "from": "DEL",
+    "to": "DXB",
+    "fromLat": 28.56,
+    "fromLng": 77.1,
+    "toLat": 25.25,
+    "toLng": 55.36,
+    "flights": 13,
+    "source": "Synthetic (mock)",
+    "SYNTHETIC_LABEL": "SYNTHETIC - not a real operational record"
+  }
+]

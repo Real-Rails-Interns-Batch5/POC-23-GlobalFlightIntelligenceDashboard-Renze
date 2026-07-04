@@ -1,0 +1,17 @@
+# ============================================================
+# SYNTHETIC DATA — Global Flight Intelligence Dashboard
+# Generated at: 2026-07-04T18:08:06.811311+00:00
+# WARNING: This file contains SIMULATED data only.
+#          No record represents a real flight or real event.
+# ============================================================
+id,callsign,type,severity,airport,message,timestamp,source,SYNTHETIC_LABEL
+alert-0,TK431,No Signal,high,JFK,No Signal detected near New York,2026-07-04T17:51:06.811095+00:00,Synthetic alert engine (mock),SYNTHETIC - not a real operational record
+alert-2,UA606,Altitude Anomaly,high,CDG,Altitude Anomaly detected near Paris,2026-07-04T17:41:06.811137+00:00,Synthetic alert engine (mock),SYNTHETIC - not a real operational record
+alert-4,EK572,Route Divergence,high,SYD,Route Divergence detected near Sydney,2026-07-04T18:00:06.811160+00:00,Synthetic alert engine (mock),SYNTHETIC - not a real operational record
+alert-7,UA989,Squawk 7700,high,JFK,Squawk 7700 detected near New York,2026-07-04T18:06:06.811198+00:00,Synthetic alert engine (mock),SYNTHETIC - not a real operational record
+alert-1,QF498,Speed Deviation,medium,DXB,Speed Deviation detected near Dubai,2026-07-04T17:54:06.811123+00:00,Synthetic alert engine (mock),SYNTHETIC - not a real operational record
+alert-3,SQ365,Squawk 7700,medium,DEL,Squawk 7700 detected near Delhi,2026-07-04T18:00:06.811149+00:00,Synthetic alert engine (mock),SYNTHETIC - not a real operational record
+alert-8,SQ305,Squawk 7700,medium,JFK,Squawk 7700 detected near New York,2026-07-04T17:40:06.811261+00:00,Synthetic alert engine (mock),SYNTHETIC - not a real operational record
+alert-5,UA501,No Signal,low,DEL,No Signal detected near Delhi,2026-07-04T18:07:06.811174+00:00,Synthetic alert engine (mock),SYNTHETIC - not a real operational record
+alert-6,QF110,No Signal,low,DXB,No Signal detected near Dubai,2026-07-04T17:43:06.811186+00:00,Synthetic alert engine (mock),SYNTHETIC - not a real operational record
+alert-9,SQ861,Route Divergence,low,CDG,Route Divergence detected near Paris,2026-07-04T17:49:06.811275+00:00,Synthetic alert engine (mock),SYNTHETIC - not a real operational record

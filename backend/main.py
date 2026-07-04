@@ -1,8 +1,13 @@
+"""
+Synthetic edge cases for unusual, boundary, and error-state scenarios.
+"""
+
 from collections import Counter
 from datetime import datetime, timedelta, timezone
 import asyncio
 import json
 import math
+import os
 import time
 
 from fastapi import FastAPI, Response, WebSocket, WebSocketDisconnect
@@ -42,6 +47,33 @@ REPLAY_MOCK_SOURCE = "Mock fallback historical replay - synthetic"
 
 _opensky_cache = {"time": 0.0, "flights": []}
 _CACHE_SECONDS = 25
+
+# ─────────────────────────────────────────────────────────────
+# Static mock data — loaded once at startup from generated files
+# (run `python generate_mock_data.py` to (re)create these files)
+# ─────────────────────────────────────────────────────────────
+DATA_DIR = os.path.join(os.path.dirname(__file__), "mock_data", "data")
+
+
+def _load_json(filename):
+    with open(os.path.join(DATA_DIR, filename)) as f:
+        return json.load(f)
+
+
+MOCK_FLIGHTS = _load_json("flights.json")
+MOCK_ALERTS = _load_json("alerts.json")
+MOCK_ROUTES = _load_json("routes.json")
+MOCK_REPLAY = _load_json("replay.json")
+MOCK_AIRPORT_DETAILS = _load_json("airport_details.json")
+EDGE_CASE_FLIGHTS = _load_json("edge_case_flights.json")
+EDGE_CASE_ALERTS = _load_json("edge_case_alerts.json")
+EDGE_CASE_ROUTES = _load_json("edge_case_routes.json")
+DOWNLOAD_BUNDLE = _load_json("download_bundle.json")
+
+with open(os.path.join(DATA_DIR, "flights.csv")) as f:
+    FLIGHTS_CSV = f.read()
+with open(os.path.join(DATA_DIR, "alerts.csv")) as f:
+    ALERTS_CSV = f.read()
 
 
 async def fetch_opensky_flights():
@@ -108,8 +140,7 @@ async def get_best_flights():
     if live:
         return live, source_payload("live", LIVE_SOURCE)
 
-    mock = make_mock_flights(60)
-    return mock, source_payload("mock", MOCK_FLIGHT_SOURCE)
+    return MOCK_FLIGHTS, source_payload("mock", MOCK_FLIGHT_SOURCE)
 
 
 def distance_km(lat1, lng1, lat2, lng2):
@@ -292,7 +323,7 @@ async def get_alerts():
         }
 
     return {
-        "alerts": make_mock_alerts(6),
+        "alerts": MOCK_ALERTS,
         **source_payload("mock", MOCK_ALERT_SOURCE),
     }
 
@@ -306,7 +337,7 @@ async def get_routes():
             return {"routes": routes, **source_payload("live", ROUTE_LIVE_SOURCE)}
 
     return {
-        "routes": make_route_density(),
+        "routes": MOCK_ROUTES,
         **source_payload("mock", ROUTE_MOCK_SOURCE),
     }
 
@@ -335,12 +366,11 @@ async def get_airport_detail(code: str):
                 **source_payload("live", "Live OpenSky airport drill-down - flights within 500 km"),
             }
 
-    detail = make_airport_detail(code)
+    detail = MOCK_AIRPORT_DETAILS.get(code.upper())
     if not detail:
         return {"error": f"Airport '{code}' not found"}
 
-    detail["mode"] = "mock"
-    detail["source"] = "Mock fallback airport drill-down - synthetic"
+    detail = {**detail, "mode": "mock", "source": "Mock fallback airport drill-down - synthetic"}
     return detail
 
 
@@ -354,19 +384,14 @@ async def get_replay():
         }
 
     return {
-        "snapshots": make_historical_replay(),
+        "snapshots": MOCK_REPLAY,
         **source_payload("mock", REPLAY_MOCK_SOURCE),
     }
 
 
 @app.get("/api/download/json")
 def download_json():
-    payload = {
-        "flights": make_mock_flights(10),
-        "alerts": make_mock_alerts(3),
-        "routes": make_route_density(5),
-    }
-    content = export_json(payload)
+    content = export_json(DOWNLOAD_BUNDLE)
     return Response(
         content=content,
         media_type="application/json",
@@ -376,10 +401,8 @@ def download_json():
 
 @app.get("/api/download/csv/flights")
 def download_csv_flights():
-    rows = make_mock_flights(20)
-    content = export_csv(rows)
     return Response(
-        content=content,
+        content=FLIGHTS_CSV,
         media_type="text/csv",
         headers={"Content-Disposition": "attachment; filename=synthetic-flights.csv"},
     )
@@ -387,10 +410,8 @@ def download_csv_flights():
 
 @app.get("/api/download/csv/alerts")
 def download_csv_alerts():
-    rows = make_mock_alerts(10)
-    content = export_csv(rows)
     return Response(
-        content=content,
+        content=ALERTS_CSV,
         media_type="text/csv",
         headers={"Content-Disposition": "attachment; filename=synthetic-alerts.csv"},
     )
@@ -412,17 +433,17 @@ def get_sample_rows():
 
 @app.get("/api/edge-cases/flights")
 def get_edge_case_flights():
-    return make_mock_flights(0, edge_cases=True)
+    return EDGE_CASE_FLIGHTS
 
 
 @app.get("/api/edge-cases/alerts")
 def get_edge_case_alerts():
-    return make_mock_alerts(0, edge_cases=True)
+    return EDGE_CASE_ALERTS
 
 
 @app.get("/api/edge-cases/routes")
 def get_edge_case_routes():
-    return make_route_density(0, edge_cases=True)
+    return EDGE_CASE_ROUTES
 
 
 @app.websocket("/ws/live")
@@ -439,7 +460,7 @@ async def websocket_live(ws: WebSocket):
                         "alerts": (
                             make_demo_alerts_from_live(flights[:40], 3)
                             if status["mode"] == "live"
-                            else make_mock_alerts(3)
+                            else MOCK_ALERTS[:3]
                         ),
                         **status,
                     }

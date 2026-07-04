@@ -1,0 +1,27 @@
+# ============================================================
+# SYNTHETIC DATA — Global Flight Intelligence Dashboard
+# Generated at: 2026-07-04T18:08:06.807987+00:00
+# WARNING: This file contains SIMULATED data only.
+#          No record represents a real flight or real event.
+# ============================================================
+id,callsign,country,lat,lng,altitude,speed,heading,origin,dest,source,SYNTHETIC_LABEL
+mock-0,LH679,United Kingdom,41.7919,81.0169,9453,553,237,LHR,NRT,Synthetic (mock),SYNTHETIC - not a real operational record
+mock-1,AF516,United Kingdom,35.6838,27.4435,10896,473,89,LHR,SYD,Synthetic (mock),SYNTHETIC - not a real operational record
+mock-2,QF130,France,11.307,70.5239,8774,470,54,CDG,SYD,Synthetic (mock),SYNTHETIC - not a real operational record
+mock-3,AF384,United States,46.4751,-45.6199,10125,459,140,JFK,LHR,Synthetic (mock),SYNTHETIC - not a real operational record
+mock-4,LH923,Australia,-10.3532,77.9591,11390,476,178,SYD,JFK,Synthetic (mock),SYNTHETIC - not a real operational record
+mock-5,AF184,Brazil,20.2613,-17.5631,8111,479,142,GRU,CDG,Synthetic (mock),SYNTHETIC - not a real operational record
+mock-6,UA718,France,41.2107,71.9943,11903,501,266,CDG,NRT,Synthetic (mock),SYNTHETIC - not a real operational record
+mock-7,TK911,India,30.7145,112.0674,11651,472,280,DEL,NRT,Synthetic (mock),SYNTHETIC - not a real operational record
+mock-8,TK816,UAE,24.6173,61.0787,11980,440,142,DXB,SIN,Synthetic (mock),SYNTHETIC - not a real operational record
+mock-9,UA550,Brazil,21.6681,-20.1859,10013,446,113,GRU,LHR,Synthetic (mock),SYNTHETIC - not a real operational record
+mock-10,EK908,India,9.2078,39.8635,11228,428,112,BOM,GRU,Synthetic (mock),SYNTHETIC - not a real operational record
+mock-11,QF243,Brazil,12.6815,39.023,11640,442,153,GRU,DEL,Synthetic (mock),SYNTHETIC - not a real operational record
+mock-12,SQ829,Japan,39.2205,116.7837,9021,466,239,NRT,CDG,Synthetic (mock),SYNTHETIC - not a real operational record
+mock-13,CX108,Japan,26.6834,97.4186,9133,450,300,NRT,BOM,Synthetic (mock),SYNTHETIC - not a real operational record
+mock-14,BA297,UAE,36.8162,136.4156,10750,538,115,DXB,NRT,Synthetic (mock),SYNTHETIC - not a real operational record
+mock-15,CX902,Singapore,15.1966,118.1122,9892,552,257,SIN,NRT,Synthetic (mock),SYNTHETIC - not a real operational record
+mock-16,SQ528,United Kingdom,47.8126,-35.0857,8741,433,4,LHR,JFK,Synthetic (mock),SYNTHETIC - not a real operational record
+mock-17,CX619,Australia,-22.3596,135.5548,8938,458,63,SYD,BOM,Synthetic (mock),SYNTHETIC - not a real operational record
+mock-18,AI693,France,28.3793,54.2225,9625,427,303,CDG,BOM,Synthetic (mock),SYNTHETIC - not a real operational record
+mock-19,TK899,Australia,-7.8428,116.1171,8346,534,202,SYD,BOM,Synthetic (mock),SYNTHETIC - not a real operational record
