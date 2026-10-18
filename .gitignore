@@ -2,10 +2,10 @@
 # Python / FastAPI
 # =====================
 backend/venv/
+backend/.venv/
 __pycache__/
 *.pyc
 *.pyo
-
 # =====================
 # Next.js / React
 # =====================

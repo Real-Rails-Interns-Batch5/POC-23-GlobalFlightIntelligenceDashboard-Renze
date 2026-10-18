@@ -14,6 +14,9 @@ import Intro from '@/components/Intro';
 
 const LiveMap = dynamic(() => import('@/components/LiveMap'), { ssr: false });
 
+const API_BASE_URL =
+  process.env.NEXT_PUBLIC_API_BASE_URL || 'http://localhost:8000';
+
 interface Flight {
   id: string;
   callsign: string;
@@ -71,10 +74,10 @@ export default function Dashboard() {
   async function fetchAll() {
     try {
       const [fRes, aRes, rRes, apRes] = await Promise.all([
-        fetch('http://localhost:8000/api/flights'),
-        fetch('http://localhost:8000/api/alerts'),
-        fetch('http://localhost:8000/api/routes'),
-        fetch('http://localhost:8000/api/airports'),
+        fetch(`${API_BASE_URL}/api/flights`),
+        fetch(`${API_BASE_URL}/api/alerts`),
+        fetch(`${API_BASE_URL}/api/routes`),
+        fetch(`${API_BASE_URL}/api/airports`),
       ]);
       const fData  = await fRes.json();
       const aData  = await aRes.json();

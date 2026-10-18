@@ -55,12 +55,11 @@ export default function LiveMap({ flights, airports, onAirportClick }: Props) {
     mapRef.current = map;
 
     L.tileLayer(
-      'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png',
-      {
-        attribution: '© OpenStreetMap © CartoDB',
-        maxZoom: 18,
-        noWrap: false,   // tiles repeat horizontally — enables infinite sideways pan
-      }
+       'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
+  {
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap contributors</a>',
+    maxZoom: 19,
+  }
     ).addTo(map);
 
     // Just fix layout after mount — no fitBounds, no view locking
@@ -151,14 +150,20 @@ export default function LiveMap({ flights, airports, onAirportClick }: Props) {
   }, [airports, onAirportClick]);
 
   return (
-  <div 
-    ref={mapDivRef} 
-    style={{ 
+  <div
+    ref={mapDivRef}
+    style={{
       position: 'absolute',
       inset: 0,
-      width: '100%', 
+      width: '100%',
       height: '100%',
-    }} 
-  />
+    }}
+  >
+    <style>{`
+  .leaflet-container .leaflet-tile {
+    filter: grayscale(100%) brightness(0.48) contrast(1.15) !important;
+  }
+`}</style>
+  </div>
 );
 }

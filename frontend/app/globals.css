@@ -454,3 +454,7 @@ aside * {
   scrollbar-width: thin;
   scrollbar-color: #1F2937 transparent;
 }
+
+.leaflet-container .leaflet-tile {
+  filter: grayscale(100%) !important;
+}

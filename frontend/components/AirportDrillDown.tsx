@@ -1,6 +1,9 @@
 'use client';
 import { useEffect, useState } from 'react';
 
+const API_BASE_URL =
+  process.env.NEXT_PUBLIC_API_BASE_URL || 'http://localhost:8000';
+
 interface Props {
   code: string;
   onClose: () => void;
@@ -30,7 +33,7 @@ export default function AirportDrillDown({ code, onClose }: Props) {
   const [data, setData] = useState<AirportDetail | null>(null);
 
   useEffect(() => {
-    fetch(`http://localhost:8000/api/airport/${code}`)
+    fetch(`${API_BASE_URL}/api/airport/${code}`)
       .then(r => r.json())
       .then(setData);
   }, [code]);

@@ -1,6 +1,9 @@
 'use client';
 import { useEffect, useState, useRef } from 'react';
 
+const API_BASE_URL =
+  process.env.NEXT_PUBLIC_API_BASE_URL || 'http://localhost:8000';
+
 interface Flight {
   id: string;
   callsign: string;
@@ -27,7 +30,7 @@ export default function HistoricalReplay() {
   const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
   useEffect(() => {
-    fetch('http://localhost:8000/api/replay')
+    fetch(`${API_BASE_URL}/api/replay`)
       .then(r => r.json())
       .then(d => {
         setSnapshots(d.snapshots || []);
