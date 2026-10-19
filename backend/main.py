@@ -70,10 +70,13 @@ EDGE_CASE_ALERTS = _load_json("edge_case_alerts.json")
 EDGE_CASE_ROUTES = _load_json("edge_case_routes.json")
 DOWNLOAD_BUNDLE = _load_json("download_bundle.json")
 
-with open(os.path.join(DATA_DIR, "flights.csv")) as f:
+
+with open(os.path.join(DATA_DIR, "flights.csv"), encoding="cp1252") as f:
     FLIGHTS_CSV = f.read()
-with open(os.path.join(DATA_DIR, "alerts.csv")) as f:
+
+with open(os.path.join(DATA_DIR, "alerts.csv"), encoding="cp1252") as f:
     ALERTS_CSV = f.read()
+
 
 
 async def fetch_opensky_flights():
